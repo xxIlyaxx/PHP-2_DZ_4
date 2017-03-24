@@ -1,5 +1,7 @@
 <?php
 
+use Models\Article;
+
 require __DIR__ . '/autoload.php';
 
 $articles = Article::findLast();

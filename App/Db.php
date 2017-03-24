@@ -1,10 +1,15 @@
 <?php
 
+namespace App;
+
 class Db
 {
+
+    use Singleton;
+
     protected $dbh;
 
-    public function __construct()
+    protected function __construct()
     {
         $host = 'localhost';
         $dbname = 'php2';
@@ -12,7 +17,7 @@ class Db
         $pass = '';
 
         $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
-        $this->dbh = new PDO($dsn, $user, $pass);
+        $this->dbh = new \PDO($dsn, $user, $pass);
     }
 
     public function query($sql, string $class, $params = [])
@@ -22,7 +27,7 @@ class Db
         if (!$res) {
             return false;
         }
-        return $sth->fetchAll(PDO::FETCH_CLASS, $class);
+        return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
     public function execute($sql, $params = [])

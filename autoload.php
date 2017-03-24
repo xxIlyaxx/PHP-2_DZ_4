@@ -2,5 +2,5 @@
 
 function __autoload($className)
 {
-    require __DIR__ . '/classes/' . $className . '.php';
+    require __DIR__ . '/' . str_replace('\\', '/', $className) . '.php';
 }
