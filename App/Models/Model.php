@@ -7,7 +7,7 @@ use App\Db;
 abstract class Model
 {
     protected const TABLE = null;
-    public $id;
+    public $id = null;
 
     public static function findAll()
     {
@@ -35,5 +35,66 @@ abstract class Model
     {
         $articles = static::findAll();
         return array_slice(array_reverse($articles), 0, $count);
+    }
+
+    public function insert()
+    {
+        $db = Db::getInstance();
+        $vars = get_object_vars($this);
+
+        $columns = [];
+        $params  = [];
+        $data    = [];
+
+        foreach ($vars as $key => $value) {
+            if ($key == 'id') {
+                continue;
+            }
+            $columns[] = $key;
+            $params[]  = ':' . $key;
+            $data[':' . $key] = $value;
+        }
+
+        $sql = 'INSERT INTO ' . static::TABLE . ' (' . implode(', ', $columns) . ') ' .
+            'VALUES (' . implode(', ', $params) . ')';
+
+        return $db->execute($sql, $params);
+    }
+
+    public function update()
+    {
+        $db = Db::getInstance();
+        $vars = get_object_vars($this);
+
+        $params = [];
+        $sqlParams = [];
+
+        foreach ($vars as $key => $value) {
+            $params[':' . $key] = $value;
+            if ($key == 'id') {
+                continue;
+            }
+            $sqlParams[] = $key . ' = :' . $key;
+        }
+
+        $sql = 'UPDATE ' . static::TABLE . ' SET ' .
+            implode(', ', $sqlParams) . 'WHERE id = :id';
+        return $db->execute($sql, $params);
+    }
+
+    public function delete()
+    {
+        $db = Db::getInstance();
+        $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id = :id';
+        return $db->execute($sql, [':id' => $this->id]);
+    }
+
+    public function save()
+    {
+        if ($this->id == null) {
+            return $this->insert();
+        } else {
+            return $this->update();
+        }
     }
 }
