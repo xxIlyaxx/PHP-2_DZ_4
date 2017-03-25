@@ -4,7 +4,6 @@ namespace App;
 
 class Db
 {
-
     use Singleton;
 
     protected $dbh;
@@ -36,5 +35,10 @@ class Db
     {
         $sth = $this->dbh->prepare($sql);
         return $sth->execute($params);
+    }
+
+    public function lastInsertId(string $name = null)
+    {
+        return $this->dbh->lastInsertId($name);
     }
 }

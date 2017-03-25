@@ -58,7 +58,11 @@ abstract class Model
         $sql = 'INSERT INTO ' . static::TABLE . ' (' . implode(', ', $columns) . ') ' .
             'VALUES (' . implode(', ', $params) . ')';
 
-        return $db->execute($sql, $params);
+        $res = $db->execute($sql, $data);
+        if (true === $res) {
+            $this->id = $db->lastInsertId();
+        }
+        return $res;
     }
 
     public function update()
@@ -78,7 +82,7 @@ abstract class Model
         }
 
         $sql = 'UPDATE ' . static::TABLE . ' SET ' .
-            implode(', ', $sqlParams) . 'WHERE id = :id';
+            implode(', ', $sqlParams) . ' WHERE id = :id';
         return $db->execute($sql, $params);
     }
 
@@ -86,12 +90,16 @@ abstract class Model
     {
         $db = Db::getInstance();
         $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id = :id';
-        return $db->execute($sql, [':id' => $this->id]);
+        $res = $db->execute($sql, [':id' => $this->id]);
+        if (true === $res) {
+            $this->id = null;
+        }
+        return $res;
     }
 
     public function save()
     {
-        if ($this->id == null) {
+        if (null === $this->id) {
             return $this->insert();
         } else {
             return $this->update();

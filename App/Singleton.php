@@ -14,9 +14,9 @@ trait Singleton
         return static::$instance;
     }
 
-    private function __wakeup()
+    protected function __wakeup()
     {}
 
-    private function __clone()
+    protected function __clone()
     {}
 }
