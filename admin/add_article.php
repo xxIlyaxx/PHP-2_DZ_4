@@ -9,6 +9,7 @@ $lead = (isset($_POST['lead'])) ? $_POST['lead'] : null;
 
 if (null === $title || null === $lead) {
     $action = '/admin/add_article.php';
+    $pageTitle = 'Новая статья';
     include __DIR__ . '/../templates/admin/edit_article.php';
     exit();
 }

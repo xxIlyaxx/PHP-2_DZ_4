@@ -17,12 +17,15 @@
     <div>
         <h2><?php echo $article->title; ?></h2>
         <p><?php echo $article->lead; ?></p>
-        <a href="/admin/delete_article.php?id=<?php echo $article->id; ?>">Удалить</a>
-        <a href="/admin/update_article.php?id=<?php echo $article->id; ?>">Редактировать</a>
+        <a href="/admin/delete_article.php?id=<?php echo $article->id; ?>" class="btn btn-danger">Удалить</a>
+        <a href="/admin/update_article.php?id=<?php echo $article->id; ?>" class="btn btn-primary">Редактировать</a>
         <hr>
     </div>
 <?php endforeach; ?>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>

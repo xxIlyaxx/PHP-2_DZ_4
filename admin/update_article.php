@@ -9,7 +9,9 @@ if (isset($_GET['id'])) {
     $article = Article::findById($id);
     $title = $article->title;
     $lead = $article->lead;
+
     $action = '/admin/update_article.php';
+    $pageTitle = 'Редактирование статьи';
 
     include __DIR__ . '/../templates/admin/edit_article.php';
     exit();

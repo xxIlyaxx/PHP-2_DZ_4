@@ -13,14 +13,16 @@
     <div class="page-header">
         <h1>Последние новости</h1>
     </div>
+    <a href="/admin/">Админ-панель</a>
     <?php foreach ($articles as $article): ?>
-        <div class="row">
             <h2><?php echo $article->title ?></h2>
             <p><?php echo $article->lead ?></p>
             <a href="/article.php?id=<?php echo $article->id ?>">Подробнее</a>
-        </div>
     <?php endforeach; ?>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
