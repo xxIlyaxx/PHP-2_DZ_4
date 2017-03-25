@@ -15,9 +15,9 @@
     </div>
     <a href="/admin/">Админ-панель</a>
     <?php foreach ($articles as $article): ?>
-            <h2><?php echo $article->title ?></h2>
-            <p><?php echo $article->lead ?></p>
-            <a href="/article.php?id=<?php echo $article->id ?>">Подробнее</a>
+        <h2><?php echo $article->title ?></h2>
+        <p><?php echo $article->lead ?></p>
+        <a href="/article.php?id=<?php echo $article->id ?>">Подробнее</a>
     <?php endforeach; ?>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
