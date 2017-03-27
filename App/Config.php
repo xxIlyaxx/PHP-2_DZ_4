@@ -6,15 +6,10 @@ class Config
 {
     use Singleton;
 
-    protected function __construct()
-    {}
+    public $data = [];
 
-    public $data = [
-        'db' => [
-            'host' => '127.0.0.1',
-            'dbname' => 'php2',
-            'user' => 'root',
-            'pass' => '',
-        ],
-    ];
+    protected function __construct()
+    {
+        $this->data = parse_ini_file(__DIR__ . '/../config.ini', true);
+    }
 }
