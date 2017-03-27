@@ -91,14 +91,7 @@ abstract class Model
         $db = Db::getInstance();
         $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id = :id';
 
-        $res = $db->execute($sql, [':id' => $this->id]);
-        if (true === $res) {
-            $props = array_keys(get_object_vars($this));
-            foreach ($props as $item) {
-                $this->$item = null;
-            }
-        }
-        return $res;
+        return $db->execute($sql, [':id' => $this->id]);
     }
 
     public function save()
