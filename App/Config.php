@@ -10,6 +10,6 @@ class Config
 
     protected function __construct()
     {
-        $this->data = parse_ini_file(__DIR__ . '/../config.ini', true);
+        $this->data = require __DIR__ . '/../config.php';
     }
 }

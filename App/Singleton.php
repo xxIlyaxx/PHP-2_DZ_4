@@ -15,8 +15,10 @@ trait Singleton
     }
 
     protected function __wakeup()
-    {}
+    {
+    }
 
     protected function __clone()
-    {}
+    {
+    }
 }
