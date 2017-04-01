@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: iliac
- * Date: 31-Mar-17
- * Time: 1:41
- */
 
 namespace App;
-
 
 class View implements \Countable, \Iterator
 {

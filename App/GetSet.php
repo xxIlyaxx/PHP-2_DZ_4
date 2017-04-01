@@ -13,7 +13,7 @@ trait GetSet
 
     public function __set($name, $value)
     {
-        return $this->data[$name] = $value;
+        $this->data[$name] = $value;
     }
 
     public function __isset($name)
