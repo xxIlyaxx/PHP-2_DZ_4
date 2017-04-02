@@ -2,10 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $pageTitle; ?></title>
+    <title><?php echo $this->pageTitle; ?></title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -13,17 +10,18 @@
 </head>
 <body>
 <div class="container">
-    <h1><?php echo $pageTitle; ?></h1>
-    <form action="<?php echo $action; ?>" method="POST">
+    <h1><?php echo $this->pageTitle; ?></h1>
+    <form action="<?php echo $this->action; ?>" method="POST">
         <div class="form-group">
             <label for="title">Заголовок</label>
-            <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control">
+            <input type="text" name="title" id="title" value="<?php echo $this->title; ?>" class="form-control">
         </div>
         <div class="form-group">
             <label for="lead">Статья</label>
-            <textarea name="lead" id="lead" cols="60" rows="30" class="form-control"><?php echo $lead; ?></textarea>
+            <textarea name="lead" id="lead" cols="60" rows="30"
+                      class="form-control"><?php echo $this->lead; ?></textarea>
         </div>
-        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <input type="hidden" name="id" value="<?php echo $this->id; ?>">
         <a href="/admin/" class="btn btn-danger">Отмена</a>
         <input type="submit" value="Сохранить" class="btn btn-success">
     </form>

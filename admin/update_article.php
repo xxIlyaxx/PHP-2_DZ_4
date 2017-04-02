@@ -1,19 +1,24 @@
 <?php
 
+use App\View;
 use App\Models\Article;
 
 require __DIR__ . '/../autoload.php';
 
 if (isset($_GET['id'])) {
-    $id = (int)$_GET['id'];
-    $article = Article::findById($id);
-    $title = $article->title;
-    $lead = $article->lead;
+    $view = new View();
 
-    $action = '/admin/update_article.php';
-    $pageTitle = 'Редактирование статьи';
+    $view->id = (int)$_GET['id'];
 
-    include __DIR__ . '/../templates/admin/edit_article.php';
+    $article = Article::findById($view->id);
+    $view->title = $article->title;
+    $view->lead = $article->lead;
+
+    $view->action = '/admin/update_article.php';
+    $view->pageTitle = 'Редактирование статьи';
+    var_dump($view);
+
+    $view->display(__DIR__ . '/../templates/admin/edit_article.php');
     exit();
 }
 

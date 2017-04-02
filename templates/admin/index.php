@@ -15,10 +15,11 @@
     <br>
     <a href="/admin/add_article.php">Добавить статью</a>
     <hr>
-    <?php foreach ($articles as $article): ?>
+    <?php foreach ($this->articles as $article): ?>
         <div>
             <h2><?php echo $article->title; ?></h2>
             <p><?php echo $article->lead; ?></p>
+            <p><?php echo (null !== $article->author) ? 'Автор: ' . $article->author->name : 'Неизвестный автор'; ?></p>
             <a href="/admin/delete_article.php?id=<?php echo $article->id; ?>" class="btn btn-danger">Удалить</a>
             <a href="/admin/update_article.php?id=<?php echo $article->id; ?>" class="btn btn-primary">Редактировать</a>
             <hr>

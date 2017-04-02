@@ -2,6 +2,12 @@
 
 namespace App;
 
+/**
+ * Class Db
+ * Класс базы данных
+ *
+ * @package App
+ */
 class Db
 {
     use Singleton;
@@ -21,6 +27,14 @@ class Db
         );
     }
 
+    /**
+     * Выполняет запрос и возвращает результат в виде массива
+     *
+     * @param string $sql
+     * @param string $class
+     * @param array $params
+     * @return array|bool
+     */
     public function query(string $sql, string $class, $params = [])
     {
         $sth = $this->dbh->prepare($sql);
@@ -31,12 +45,25 @@ class Db
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
+    /**
+     * Выполняет запрос и возвращает результат в виде bool
+     *
+     * @param string $sql
+     * @param array $params
+     * @return bool
+     */
     public function execute($sql, $params = [])
     {
         $sth = $this->dbh->prepare($sql);
         return $sth->execute($params);
     }
 
+    /**
+     * Возвращает последний, вставленный ID
+     *
+     * @param string|null $name
+     * @return string
+     */
     public function lastInsertId(string $name = null)
     {
         return $this->dbh->lastInsertId($name);

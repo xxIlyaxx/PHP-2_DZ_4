@@ -1,15 +1,12 @@
 <?php
 
+use App\View;
 use App\Models\Article;
 
 require __DIR__ . '/autoload.php';
 
-if (isset($_GET['id'])) {
-    $id = (int)$_GET['id'];
-} else {
-    $id = null;
-}
+$id = (isset($_GET['id'])) ? (int)$_GET['id'] : null;
 
-$article = Article::findById($id);
-
-include __DIR__ . '/templates/article.php';
+$view = new View();
+$view->article = Article::findById($id);
+$view->display(__DIR__ . '/templates/article.php');

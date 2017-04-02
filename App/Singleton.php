@@ -2,6 +2,12 @@
 
 namespace App;
 
+/**
+ * Trait Singleton
+ * Содержит в себе реализацию паттерна Singleton
+ *
+ * @package App
+ */
 trait Singleton
 {
     protected static $instance = null;

@@ -2,6 +2,12 @@
 
 namespace App;
 
+/**
+ * Class Config
+ * Класс для хранения конфигурации приложения
+ *
+ * @package App
+ */
 class Config
 {
     use Singleton;

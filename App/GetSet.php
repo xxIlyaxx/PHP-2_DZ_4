@@ -2,6 +2,13 @@
 
 namespace App;
 
+/**
+ * Trait GetSet
+ * Содержит в себе реализацию магических
+ * методов __get(), __set() и __isset()
+ *
+ * @package App
+ */
 trait GetSet
 {
     protected $data = [];

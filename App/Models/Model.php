@@ -4,11 +4,23 @@ namespace App\Models;
 
 use App\Db;
 
+/**
+ * Class Model
+ * Класс модели
+ *
+ * @package App\Models
+ */
 abstract class Model
 {
     protected const TABLE = null;
     public $id = null;
 
+    /**
+     * Находит и возвращает все модели
+     * из текущей таблицы
+     *
+     * @return mixed
+     */
     public static function findAll()
     {
         $db = Db::getInstance();
@@ -16,6 +28,13 @@ abstract class Model
         return $db->query($sql, static::class);
     }
 
+    /**
+     * Находит модель из текущей таблицы
+     * по ее ID
+     *
+     * @param int $id
+     * @return mixed
+     */
     public static function findById($id)
     {
         $db = Db::getInstance();
@@ -31,27 +50,37 @@ abstract class Model
 //        return $db->query($sql, static::class);
 //    }
 
+    /**
+     * @param int $count
+     * @return array
+     */
     public static function findLast($count = 3)
     {
         $articles = static::findAll();
         return array_slice(array_reverse($articles), 0, $count);
     }
 
+    /**
+     * Создает запись текущей модели
+     * в базе данных
+     *
+     * @return bool
+     */
     public function insert()
     {
         $db = Db::getInstance();
         $vars = get_object_vars($this);
 
         $columns = [];
-        $params  = [];
-        $data    = [];
+        $params = [];
+        $data = [];
 
         foreach ($vars as $key => $value) {
             if ($key == 'id') {
                 continue;
             }
             $columns[] = $key;
-            $params[]  = ':' . $key;
+            $params[] = ':' . $key;
             $data[':' . $key] = $value;
         }
 
@@ -65,6 +94,11 @@ abstract class Model
         return $res;
     }
 
+    /**
+     * Обновляет запись в базе данных
+     *
+     * @return bool
+     */
     public function update()
     {
         $db = Db::getInstance();
@@ -86,6 +120,12 @@ abstract class Model
         return $db->execute($sql, $params);
     }
 
+    /**
+     * Удаляет текущую модель из
+     * базы данных
+     *
+     * @return bool
+     */
     public function delete()
     {
         $db = Db::getInstance();
@@ -94,6 +134,12 @@ abstract class Model
         return $db->execute($sql, [':id' => $this->id]);
     }
 
+    /**
+     * Записывает изменения текущей модели в
+     * базу данных
+     *
+     * @return bool
+     */
     public function save()
     {
         if (null === $this->id) {
