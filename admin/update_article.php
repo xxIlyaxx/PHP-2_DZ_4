@@ -13,10 +13,10 @@ if (isset($_GET['id'])) {
     $article = Article::findById($view->id);
     $view->title = $article->title;
     $view->lead = $article->lead;
+    $view->authorName = (null !== $article->author) ? 'Автор: ' . $article->author->name : 'Неизвестный автор';
 
     $view->action = '/admin/update_article.php';
     $view->pageTitle = 'Редактирование статьи';
-    var_dump($view);
 
     $view->display(__DIR__ . '/../templates/admin/edit_article.php');
     exit();

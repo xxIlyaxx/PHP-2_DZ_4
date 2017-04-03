@@ -13,6 +13,7 @@ if (null === $title || null === $lead) {
 
     $view->action = '/admin/add_article.php';
     $view->pageTitle = 'Новая статья';
+    $view->authorName = null;
 
     $view->display(__DIR__ . '/../templates/admin/edit_article.php');
     exit();

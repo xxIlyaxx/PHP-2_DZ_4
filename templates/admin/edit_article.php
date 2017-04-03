@@ -11,6 +11,9 @@
 <body>
 <div class="container">
     <h1><?php echo $this->pageTitle; ?></h1>
+    <?php if (null !== $this->authorName): ?>
+        <p><?php echo $this->authorName; ?></p>
+    <?php endif; ?>
     <form action="<?php echo $this->action; ?>" method="POST">
         <div class="form-group">
             <label for="title">Заголовок</label>
