@@ -7,7 +7,7 @@ use App\Models\Article;
 
 /**
  * Class Index
- * Контроллер сайта новостей
+ * Контроллер блока новостей
  *
  * @package App\Controllers
  */
