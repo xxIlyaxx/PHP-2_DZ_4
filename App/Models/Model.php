@@ -35,7 +35,7 @@ abstract class Model
      * @param int $id
      * @return mixed
      */
-    public static function findById($id)
+    public static function findById(int $id)
     {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id = :id';
@@ -54,7 +54,7 @@ abstract class Model
      * @param int $count
      * @return array
      */
-    public static function findLast($count = 3)
+    public static function findLast(int $count = 3)
     {
         $articles = static::findAll();
         return array_slice(array_reverse($articles), 0, $count);

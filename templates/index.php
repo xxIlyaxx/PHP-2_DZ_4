@@ -13,12 +13,12 @@
     <div class="page-header">
         <h1>Последние новости</h1>
     </div>
-    <a href="/admin/">Админ-панель</a>
-    <?php foreach ($this->articles as $article): ?>
+    <a href="/admin/index">Админ-панель</a>
+    <?php foreach ($articles as $article): ?>
         <h2><?php echo $article->title; ?></h2>
         <p><?php echo $article->lead; ?></p>
         <p><?php echo (null !== $article->author) ? 'Автор: ' . $article->author->name : 'Неизвестный автор'; ?></p>
-        <a href="/article.php?id=<?php echo $article->id; ?>">Подробнее</a>
+        <a href="/one/?id=<?php echo $article->id; ?>">Подробнее</a>
     <?php endforeach; ?>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"

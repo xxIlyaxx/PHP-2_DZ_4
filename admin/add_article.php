@@ -5,8 +5,8 @@ use App\Models\Article;
 
 require __DIR__ . '/../autoload.php';
 
-$title = (isset($_POST['title'])) ? $_POST['title'] : null;
-$lead = (isset($_POST['lead'])) ? $_POST['lead'] : null;
+$title = $_POST['title'] ?? null;
+$lead = $_POST['lead'] ?? null;
 
 if (null === $title || null === $lead) {
     $view = new View();
