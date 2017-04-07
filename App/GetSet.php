@@ -27,4 +27,9 @@ trait GetSet
     {
         return isset($this->data[$name]);
     }
+
+    public function __unset($name)
+    {
+        unset($this->data[$name]);
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\GetSet;
+
 /**
  * Class Article
  * Модель статьи
@@ -12,6 +14,8 @@ namespace App\Models;
  */
 class Article extends Model
 {
+    use GetSet;
+
     protected const TABLE = 'news';
 
     public $title;
@@ -21,7 +25,10 @@ class Article extends Model
     public function __get($name)
     {
         if ('author' === $name && null !== $this->author_id) {
-            return Author::findById($this->author_id);
+            if (false === isset($this->author)) {
+                $this->author = Author::findById($this->author_id);
+            }
+            return $this->data['author'];
         }
     }
 

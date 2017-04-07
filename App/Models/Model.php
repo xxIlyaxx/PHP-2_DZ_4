@@ -70,6 +70,7 @@ abstract class Model
     {
         $db = Db::getInstance();
         $vars = get_object_vars($this);
+        unset($vars['data']);
 
         $columns = [];
         $params = [];
@@ -84,8 +85,10 @@ abstract class Model
             $data[':' . $key] = $value;
         }
 
+
         $sql = 'INSERT INTO ' . static::TABLE . ' (' . implode(', ', $columns) . ') ' .
             'VALUES (' . implode(', ', $params) . ')';
+
 
         $res = $db->execute($sql, $data);
         if (true === $res) {
@@ -103,6 +106,7 @@ abstract class Model
     {
         $db = Db::getInstance();
         $vars = get_object_vars($this);
+        unset($vars['data']);
 
         $params = [];
         $sqlParams = [];
